@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# SubagentStart hook — 辅助检测长任务信号
+# 子代理（Agent/Background）启动可能意味着批量任务编排，提醒模型检查是否需触发 leave-user
+
+set -euo pipefail
+
+# 构建短上下文信号（仅 1-2 句，不占用过多上下文）
+signal_context="⚡ 检测到子代理（Agent）已启动。请判断当前整体任务预估耗时是否 ≥3 分钟。若是长任务，考虑调用 Skill(\"leave-user\") 提醒用户可离开，开启后台陪护模式。"
+
+# JSON 字符串转义
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+signal_escaped=$(escape_for_json "$signal_context")
+
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+    printf '{\n  "additional_context": "%s"\n}\n' "$signal_escaped" | cat
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+    printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SubagentStart",\n    "additionalContext": "%s"\n  }\n}\n' "$signal_escaped" | cat
+else
+    printf '{\n  "additionalContext": "%s"\n}\n' "$signal_escaped" | cat
+fi
+
+exit 0

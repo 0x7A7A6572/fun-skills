@@ -1,0 +1,20 @@
+{
+  "name": "fun-skills",
+  "description": "interesting skill collection",
+  "owner": {
+    "name": "0x7A7A6572",
+    "email": "zzerx@qq.com"
+  },
+  "plugins": [
+    {
+      "name": "learn-by-building",
+      "source": "./plugins/learn-by-building/",
+      "description": "在真实开发中学习框架/语言/技术栈"
+    },
+    {
+      "name": "leave-user",
+      "source": "./plugins/leave-user/",
+      "description": "长任务后台陪护趣味技能"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "leave-user",
+  "displayName": "leave-user",
+  "description": "长任务后台陪护趣味技能",
+  "version": "1.0.0",
+  "author": {
+    "name": "0x7A7A6572"
+  },
+  "skills": "./skills/"
+}

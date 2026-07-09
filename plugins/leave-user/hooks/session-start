@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# SessionStart hook — 注入 leave-user skill 上下文
+# 让模型在会话启动时就知道 leave-user 技能存在，后续由模型自主判断是否触发
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+# 读取 leave-user SKILL.md 内容
+skill_content=$(cat "${PLUGIN_ROOT}/skills/leave-user/SKILL.md" 2>&1 || echo "Error reading leave-user skill")
+
+# JSON 字符串转义
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+skill_escaped=$(escape_for_json "$skill_content")
+
+# 构建注入上下文
+session_context="<EXTREMELY_IMPORTANT>\n你有「leave-user」长任务后台陪护技能可用。\n\n**以下是 leave-user 技能的完整内容——检测到预估耗时≥3分钟的长任务时，使用 Skill 工具调用它：**\n\n${skill_escaped}\n\n**记住：仅在预估任务耗时≥3分钟时才调用此技能。短任务完全静默，不做任何提示。**\n</EXTREMELY_IMPORTANT>"
+
+# 根据平台输出对应格式的 JSON
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+    printf '{\n  "additional_context": "%s"\n}\n' "$session_context" | cat
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+    printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context" | cat
+else
+    printf '{\n  "additionalContext": "%s"\n}\n' "$session_context" | cat
+fi
+
+exit 0

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# PostToolUse(Workflow) hook — 辅助检测长任务信号
+# Workflow 多阶段编排几乎肯定是长任务，直接提醒模型触发 leave-user
+
+set -euo pipefail
+
+# 构建短上下文信号
+signal_context="⚡ 检测到 Workflow 多阶段编排已启动。这大概率是长耗时任务（预估 ≥3 分钟）。请调用 Skill(\"leave-user\") 提醒用户可暂时离开，开启后台陪护模式。"
+
+# JSON 字符串转义
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+signal_escaped=$(escape_for_json "$signal_context")
+
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+    printf '{\n  "additional_context": "%s"\n}\n' "$signal_escaped" | cat
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+    printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "PostToolUse",\n    "additionalContext": "%s"\n  }\n}\n' "$signal_escaped" | cat
+else
+    printf '{\n  "additionalContext": "%s"\n}\n' "$signal_escaped" | cat
+fi
+
+exit 0
