@@ -15,6 +15,11 @@
       "name": "leave-user",
       "source": "./plugins/leave-user/",
       "description": "长任务后台陪护趣味技能"
+    },
+    {
+      "name": "truth-seeker",
+      "source": "./plugins/truth-seeker/",
+      "description": "网络事实核查——验证真伪、分析原理与底层逻辑"
     }
   ]
 }
