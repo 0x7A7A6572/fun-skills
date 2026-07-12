@@ -20,9 +20,11 @@
 | 1 | `page-top.html` | 静态，无需读取 | DOCTYPE → head → 品牌顶栏 → 面包屑 → 布局容器开始 |
 | 2 | `article-header.html` | **按需读取** | 文章头部：标题、作者、日期、DOI |
 | 3 | `section-abstract.html` | **按需读取** | Abstract：陈述引用 + 研究概要 |
-| 4 | `section-results.html` | **推荐读取** | 核心：综合可信度评级 + 尺度条 + 效应量 + 置信区间 |
-| 5 | `section-methodology.html` | **推荐读取** | 验证方法论：可证伪性检查 + 假设形式化 + 来源审计 |
-| 6 | `section-verification.html` | **推荐读取** | 逐条验证：claim-block × N（审计条 + 证据网格 + 竞争假设） |
+| 4a | `section-results.html` | **推荐读取**（claim_verification） | 核心：综合可信度评级 + 尺度条 + 效应量 + 置信区间 |
+| 4b | `section-results-investigative.html` | **推荐读取**（investigative） | 调查发现：各维度核心发现 + 核心矛盾 + 综合判断 + 数据缺口 |
+| 5 | `section-methodology.html` | **推荐读取** | 验证方法论：可证伪性检查 + 假设形式化（可选） + 来源审计 |
+| 6a | `section-verification.html` | **推荐读取**（claim_verification） | 逐条验证：claim-block × N（审计条 + 证据网格 + 竞争假设） |
+| 6b | `section-verification-investigative.html` | **推荐读取**（investigative） | 维度分析：dimension-block × N（审计条 + 证据 + 成因分析） |
 | 7 | `section-evidence-materials.html` | 按需读取 | 媒体证据：图表示例、文件下载卡片（无可跳过） |
 | 8 | `section-principles.html` | 按需读取 | 原理分析：效率表格 + 驱动力 |
 | 9 | `section-discussion.html` | 按需读取 | 底层逻辑：编号列表 + 能力光谱 |
@@ -104,6 +106,19 @@ page-top.html
 `scale-labels` 中 5 个 `<span>` 分别对应：虚假、无法判断、部分真实、基本真实、真实。
 AI 需要根据评级结果，在对应的 `<span>` 上添加 `class="is-active"`，其他 4 个不加类。
 
+### section-results-investigative.html
+```
+{{DIMENSION_FINDINGS}}   — 各维度发现卡片列表，每项格式:
+  <div class="finding-card">
+    <h3 class="finding-dimension">维度名称</h3>
+    <p class="finding-text">该维度的核心发现（2-3句，有据可依）</p>
+  </div>
+
+{{CORE_TENSION}}         — 核心矛盾总结段落（说辞与现实的差距，可含 <strong>、<br>）
+{{OVERALL_JUDGMENT}}     — 综合判断段落（文字结论，不使用百分比评分）
+{{DATA_GAPS}}            — 数据缺口说明（哪些维度证据充分，哪些存疑）
+```
+
 ### section-methodology.html
 ```
 {{FALSIFIABILITY}}       — 可证伪性判断结论（一段话）
@@ -163,29 +178,79 @@ AI 需要根据评级结果，在对应的 `<span>` 上添加 `class="is-active"
 <span class="audit-badge audit-badge--low">利益冲突: 待确认</span>
 ```
 
+### section-verification-investigative.html
+```
+每个维度 N 所需变量：
+{{DIM_N_TITLE}}          — 维度标题
+{{DIM_N_AUDIT}}          — 来源审计标记条 HTML（4个 audit-badge）
+{{DIM_N_EVIDENCE}}       — 该维度的证据列表（多个 <li>，不区分正反方，按主题分组）
+{{DIM_N_ANALYSIS}}       — 分析文字（<strong>分析：</strong>开头）
+{{DIM_N_CAUSES}}         — 成因分析条目，每项格式:
+  <div class="cause-item">
+    <span class="cause-label">文化 / 制度 / 经济 / 传播</span>
+    <span>具体成因分析</span>
+  </div>
+  cause-label 四个取值：文化、制度、经济、传播
+```
+
+证据项格式（与 section-verification.html 相同）：
+```html
+<li>证据描述 <span class="evidence-source">来源名 <span class="evidence-stars">★★★★</span></span></li>
+```
+
 ### section-evidence-materials.html
 ```
-{{GALLERY_ITEMS}}       — 混合画廊内容，可包含 Figure 和 File Card 混排:
-  · Figure 格式:
-    <figure class="figure-box">
-      <img src="图片URL" alt="描述">
-      <figcaption><strong>图 N.</strong> 标题。
-        <a class="figure-source-link" href="来源URL">图片源链接</a>
-      </figcaption>
-    </figure>
-  · File Card 格式:
-    <a class="file-card" href="文件URL" target="_blank" rel="noopener">
-      <span class="file-card-icon">📄</span>  ← 📄=PDF, 📊=数据, 🎬=视频, 📷=截图, 📁=数据集
-      <div class="file-card-body">
-        <div class="file-card-name">文件名称</div>
-        <div class="file-card-meta">
-          <span>来源名称</span>
-          <span class="file-card-type">PDF</span>
-        </div>
-      </div>
-      <span class="file-card-arrow">→</span>
-    </a>
-{{STANDALONE_FIGURE}}   — 单张大图模式（与 GALLERY_ITEMS 二选一），直接放一个 figure-box
+按 media_materials 的 type 字段分类渲染，每个变量按需填充，无对应类型则留空：
+
+{{IMAGE_FIGURES}}   — image 类型。用 <figure class="figure-box"> 包裹 <img> 直接显示。
+                      格式:
+                        <figure class="figure-box">
+                          <img src="图片直接URL" alt="描述" loading="lazy">
+                          <figcaption><strong>图 N.</strong> 标题。
+                            <span class="figure-attr">来源：机构名称</span>
+                            <a class="figure-source-link" href="来源URL">查看原始页面</a>
+                          </figcaption>
+                        </figure>
+
+{{VIDEO_EMBEDS}}    — video 类型。用 <figure class="figure-box"> 包裹 <video> 标签。
+                      格式:
+                        <figure class="figure-box">
+                          <video controls preload="metadata" style="width:100%;display:block;background:#000;">
+                            <source src="视频直接URL" type="video/mp4">
+                          </video>
+                          <figcaption><strong>视频 N.</strong> 标题。
+                            <span class="figure-attr">来源：机构名称</span>
+                            <a class="figure-source-link" href="来源URL">查看来源</a>
+                          </figcaption>
+                        </figure>
+
+{{CHART_EMBEDS}}    — chart 类型。交互式图表用 <iframe> 嵌入；静态图片退化同 IMAGE_FIGURES。
+                      格式（iframe）:
+                        <figure class="figure-box">
+                          <iframe src="图表页面URL" loading="lazy"
+                                  style="width:100%;height:500px;border:none;display:block;"></iframe>
+                          <figcaption><strong>图 N.</strong> 标题。
+                            <span class="figure-attr">来源：机构名称</span>
+                            <a class="figure-source-link" href="来源URL">查看原始页面</a>
+                          </figcaption>
+                        </figure>
+
+{{FILE_CARDS}}      — file 类型。下载卡片:
+                        <a class="file-card" href="文件URL" target="_blank" rel="noopener">
+                          <span class="file-card-icon">📄</span>
+                          <div class="file-card-body">
+                            <div class="file-card-name">文件名称</div>
+                            <div class="file-card-meta">
+                              <span>来源名称</span>
+                              <span class="file-card-type">PDF</span>
+                            </div>
+                          </div>
+                          <span class="file-card-arrow">→</span>
+                        </a>
+                      图标: 📄=PDF/文档, 📑=报告, 📝=文稿, 📋=表格文档, 📕=书籍
+
+{{DATASET_CARDS}}   — dataset 类型。数据集下载卡片（格式同 FILE_CARDS）。
+                      图标: 📊=数据表格, 📁=数据集, 📈=趋势数据, 💾=原始数据, 🗂️=多文件数据集
 ```
 
 ### section-principles.html

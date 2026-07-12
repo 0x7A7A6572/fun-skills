@@ -1,0 +1,102 @@
+<!-- {{BLOCK: section-verification-investigative}}
+     维度分析区块（investigative 类型专用）：逐维度深入分析 + 证据呈现 + 成因剖析。
+     替代 section-verification.html 的逐条验证+竞争假设，适用于调查性提问。
+
+     每个维度块的结构：
+       <div class="claim-block">
+         <div class="claim-block-head">
+           <span class="claim-num">N</span>
+           <span class="claim-title">维度标题</span>
+         </div>
+
+         <!-- 来源审计标记条（复用现有 audit-strip） -->
+         <div class="audit-strip">...</div>
+
+         <div class="evidence-grid">...</div>
+         <div class="claim-analysis">...</div>
+
+         <!-- 成因分析（替代竞争假设） -->
+         <div class="cause-analysis">
+           <h4>成因分析</h4>
+           ...
+         </div>
+       </div>
+
+     变量（每个维度 N）：
+     {{DIM_N_TITLE}}         — 维度标题
+     {{DIM_N_AUDIT}}         — 来源审计标记条 HTML（4个 audit-badge）
+     {{DIM_N_EVIDENCE}}      — 该维度的证据列表（多个 <li>，不区分正反方，而是按主题分组）
+     {{DIM_N_ANALYSIS}}      — 分析文字
+     {{DIM_N_CAUSES}}        — 成因分析条目，每项格式:
+       <div class="cause-item">
+         <span class="cause-label">文化 / 制度 / 经济 / 传播</span>
+         <span>具体成因分析</span>
+       </div>
+-->
+
+      <section class="content-section" id="verification">
+        <h2 class="section-heading">Analysis · 维度分析</h2>
+
+        <!-- 维度 1 -->
+        <div class="claim-block">
+          <div class="claim-block-head">
+            <span class="claim-num">1</span>
+            <span class="claim-title">{{DIM_1_TITLE}}</span>
+          </div>
+
+          <div class="audit-strip">
+            {{DIM_1_AUDIT}}
+          </div>
+
+          <div class="evidence-grid">
+            <div>
+              <div class="evidence-col-label">证据材料</div>
+              <ul class="evidence-list">
+                {{DIM_1_EVIDENCE}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="claim-analysis">
+            {{DIM_1_ANALYSIS}}
+          </div>
+
+          <div class="cause-analysis">
+            <h4>成因分析</h4>
+            {{DIM_1_CAUSES}}
+          </div>
+        </div>
+
+        <!-- 维度 2 -->
+        <div class="claim-block">
+          <div class="claim-block-head">
+            <span class="claim-num">2</span>
+            <span class="claim-title">{{DIM_2_TITLE}}</span>
+          </div>
+
+          <div class="audit-strip">
+            {{DIM_2_AUDIT}}
+          </div>
+
+          <div class="evidence-grid">
+            <div>
+              <div class="evidence-col-label">证据材料</div>
+              <ul class="evidence-list">
+                {{DIM_2_EVIDENCE}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="claim-analysis">
+            {{DIM_2_ANALYSIS}}
+          </div>
+
+          <div class="cause-analysis">
+            <h4>成因分析</h4>
+            {{DIM_2_CAUSES}}
+          </div>
+        </div>
+
+      </section>
+
+<!-- {{BLOCK: section-verification-investigative}} 结束 -->

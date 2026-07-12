@@ -1,8 +1,8 @@
 {
   "name": "truth-seeker",
   "displayName": "truth-seeker",
-  "description": "事实/观点核查——多 Agent 并行流水线，验证用户输入内容是否属实，分析原理与底层逻辑，输出可信度报告",
-  "version": "1.3.0",
+  "description": "事实/观点核查与调查分析——多 Agent 并行流水线，自动识别提问类型（主张验证/调查性提问/观点分析），自适应推理框架，输出可信度报告或多维分析报告",
+  "version": "1.4.0",
   "author": {
     "name": "0x7A7A6572"
   },

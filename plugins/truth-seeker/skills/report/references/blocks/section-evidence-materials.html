@@ -1,46 +1,103 @@
 <!-- {{BLOCK: section-evidence-materials}}
-     证据材料区块：展示搜索到的图片、图表、文档、数据集等媒体证据。
-     放在 verification 之后、references 之前。如果本次核查没有多媒体证据，可跳过。
-     包含两种展示模式：
-       1. 混合画廊（Figure + File Card 混排）
-       2. 独立 Figure（大图独占）
+    证据材料区块：按 type 分类渲染——image/video 直接嵌入显示，chart 嵌入或图片，
+    file/dataset 以下载卡片形式展示。放在 verification 之后、references 之前。
+    如本次核查没有任何媒体证据，跳过整个 section。
 
-     画廊模式变量（多项混排）：
-       {{GALLERY_ITEMS}} — 画廊项目，每项可以是 figure-box 或 file-card
-         · Figure 格式:
-           <figure class="figure-box">
-             <img src="图片URL" alt="描述">
-             <figcaption><strong>图 N.</strong> 标题。
-               <a class="figure-source-link" href="来源URL">图片源链接</a>
-             </figcaption>
-           </figure>
-         · File Card 格式:
-           <a class="file-card" href="文件URL" target="_blank" rel="noopener">
-             <span class="file-card-icon">📄</span>
-             <div class="file-card-body">
-               <div class="file-card-name">文件名称</div>
-               <div class="file-card-meta">
-                 <span>来源名称</span>
-                 <span class="file-card-type">PDF</span>
-               </div>
-             </div>
-             <span class="file-card-arrow">→</span>
-           </a>
-         · file-card-icon 参考: 📄=PDF, 📊=数据/表格, 🎬=视频, 📷=截图, 📁=数据集
+    变量一览（均为可选，按类型分类填充）：
 
-     独立 Figure 模式（仅一张大图/图表）：
-       {{STANDALONE_FIGURE}} — 直接放一个 figure-box
+    {{IMAGE_FIGURES}} — image 类型。用 <figure class="figure-box"> 包裹 <img> 直接显示。
+      格式示例（有多张则重复）:
+        <figure class="figure-box">
+          <img src="https://example.com/chart.png" alt="全球温度趋势图" loading="lazy">
+          <figcaption>
+            <strong>图 1.</strong> 全球地表温度距平变化趋势（NASA GISTEMP v4）。
+            <span class="figure-attr">来源：NASA Goddard Institute for Space Studies</span>
+            <a class="figure-source-link" href="https://data.giss.nasa.gov/gistemp/" target="_blank" rel="noopener">查看原始数据</a>
+          </figcaption>
+        </figure>
+
+    {{VIDEO_EMBEDS}} — video 类型。用 <figure class="figure-box"> 包裹 <video> 标签直接播放。
+      格式示例:
+        <figure class="figure-box">
+          <video controls poster="可选封面图URL" preload="metadata" style="width:100%;display:block;background:#000;">
+            <source src="https://example.com/video.mp4" type="video/mp4">
+            您的浏览器不支持视频播放。
+          </video>
+          <figcaption>
+            <strong>视频 1.</strong> 气候模型模拟全球温度变化。
+            <span class="figure-attr">来源：NOAA Climate.gov</span>
+            <a class="figure-source-link" href="https://www.climate.gov/" target="_blank" rel="noopener">查看来源</a>
+          </figcaption>
+        </figure>
+
+    {{CHART_EMBEDS}} — chart 类型。交互式图表（Datawrapper/Flourish 等）用 <iframe> 嵌入；
+      如果是静态图片链接则退化为 <figure class="figure-box"> + <img>。
+      格式示例（iframe）:
+        <figure class="figure-box">
+          <iframe src="https://datawrapper.dwcdn.net/xxxxx/" loading="lazy"
+                  style="width:100%;height:500px;border:none;display:block;"
+                  allowfullscreen></iframe>
+          <figcaption>
+            <strong>图 2.</strong> 交互式碳排放趋势图。
+            <span class="figure-attr">来源：Our World in Data</span>
+            <a class="figure-source-link" href="https://ourworldindata.org/co2-emissions" target="_blank" rel="noopener">查看原始页面</a>
+          </figcaption>
+        </figure>
+      格式示例（静态图片退化）: 同 IMAGE_FIGURES 格式。
+
+    {{FILE_CARDS}} — file 类型。用文件下载卡片展示，点击可下载/跳转。
+      格式示例:
+        <a class="file-card" href="https://example.com/report.pdf" target="_blank" rel="noopener">
+          <span class="file-card-icon">📄</span>
+          <div class="file-card-body">
+            <div class="file-card-name">IPCC AR6 综合报告全文</div>
+            <div class="file-card-meta">
+              <span>IPCC</span>
+              <span class="file-card-type">PDF</span>
+            </div>
+          </div>
+          <span class="file-card-arrow">→</span>
+        </a>
+      图标参考: 📄=PDF/文档, 📑=报告, 📝=文稿, 📋=表格文档, 📕=书籍
+
+    {{DATASET_CARDS}} — dataset 类型。数据集下载卡片。
+      格式同 FILE_CARDS，但图标和数据平台相关:
+        <a class="file-card" href="https://example.com/data.csv" target="_blank" rel="noopener">
+          <span class="file-card-icon">📊</span>
+          <div class="file-card-body">
+            <div class="file-card-name">NASA GISTEMP v4 全球温度异常数据集</div>
+            <div class="file-card-meta">
+              <span>NASA Goddard Institute for Space Studies</span>
+              <span class="file-card-type">CSV</span>
+            </div>
+          </div>
+          <span class="file-card-arrow">→</span>
+        </a>
+      图标参考: 📊=数据表格, 📁=数据集, 📈=趋势数据, 💾=原始数据, 🗂️=多文件数据集
+
+    注意：
+    - 每个变量按需填充，没有对应类型的材料则不填（留空字符串）。
+    - 如果所有变量均为空，跳过整个 section。
+    - file-card-icon 和 file-card-type 根据实际文件格式选择对应的图标和标签。
 -->
 
       <section class="content-section" id="materials">
         <h2 class="section-heading">Evidence Materials · 证据材料</h2>
 
-        <div class="evidence-gallery">
-          {{GALLERY_ITEMS}}
-        </div>
+        <!-- 图片：直接嵌入显示 -->
+        {{IMAGE_FIGURES}}
 
-        <!-- 如只需单张大图，替换上面的 gallery 为独立 figure -->
-        {{STANDALONE_FIGURE}}
+        <!-- 视频：原生播放器嵌入 -->
+        {{VIDEO_EMBEDS}}
+
+        <!-- 图表：交互式 iframe 或静态图片 -->
+        {{CHART_EMBEDS}}
+
+        <!-- 文件：下载卡片 -->
+        {{FILE_CARDS}}
+
+        <!-- 数据集：下载卡片 -->
+        {{DATASET_CARDS}}
       </section>
 
 <!-- {{BLOCK: section-evidence-materials}} 结束 -->

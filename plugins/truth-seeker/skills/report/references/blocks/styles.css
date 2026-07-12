@@ -1248,6 +1248,74 @@ body {
 .alt-h-plausibility--unlikely { color: var(--verdict-false);   }
 
 /* ============================================================
+   调查发现卡片（investigative 专用）
+   ============================================================ */
+.findings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+.finding-card {
+  padding: var(--space-md);
+  border: 1px solid var(--rule);
+  background: #fdfdfd;
+}
+.finding-dimension {
+  font-family: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: var(--space-xs);
+}
+.finding-text {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   成因分析（investigative 专用，替代竞争假设）
+   ============================================================ */
+.cause-analysis {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  border: 1px solid var(--rule-light);
+  background: #fafbfc;
+}
+.cause-analysis h4 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+.cause-item {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+.cause-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cause-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: var(--text-faint);
+  white-space: nowrap;
+  min-width: 40px;
+  text-align: right;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+}
+
+/* ============================================================
    媒体证据 · Figure（图片/图表）
    ============================================================ */
 .figure-box {
@@ -1255,11 +1323,17 @@ body {
   border: 1px solid var(--rule);
   overflow: hidden;
 }
-.figure-box img {
+.figure-box img,
+.figure-box video {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+  background: #fafafa;
+}
+.figure-box iframe {
+  display: block;
+  width: 100%;
   background: #fafafa;
 }
 .figure-box figcaption {
@@ -1284,6 +1358,13 @@ body {
   word-break: break-all;
 }
 .figure-source-link:hover { text-decoration: underline; }
+
+.figure-attr {
+  display: block;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  margin-top: 2px;
+}
 
 /* ============================================================
    文件下载卡片
@@ -1374,6 +1455,15 @@ body {
   }
   .hypothesis-row {
     flex-direction: column;
+  }
+  .cause-item {
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  .cause-label {
+    min-width: auto;
+    text-align: left;
+    align-self: flex-start;
   }
   .audit-strip {
     gap: var(--space-2xs);

@@ -1,0 +1,40 @@
+<!-- {{BLOCK: section-results-investigative}}
+     调查发现区块（investigative 类型专用）：各维度核心发现 + 核心矛盾 + 综合判断。
+     替代 section-results.html 的贝叶斯可信度评分，适用于调查性提问。
+
+     变量：
+       {{DIMENSION_FINDINGS}}   — 各维度发现卡片列表，每项格式:
+         <div class="finding-card">
+           <h3 class="finding-dimension">维度名称</h3>
+           <p class="finding-text">该维度的核心发现（2-3句，有据可依）</p>
+         </div>
+
+       {{CORE_TENSION}}         — 核心矛盾总结段落（说辞与现实的差距）
+       {{OVERALL_JUDGMENT}}     — 综合判断段落（文字结论，不使用百分比评分）
+       {{DATA_GAPS}}            — 数据缺口说明（哪些维度证据充分，哪些存疑）
+-->
+
+      <section class="content-section" id="results">
+        <h2 class="section-heading">Findings · 调查发现</h2>
+
+        <div class="findings-grid">
+          {{DIMENSION_FINDINGS}}
+        </div>
+
+        <h3 class="sub-heading">核心矛盾</h3>
+        <div class="callout-box">
+          {{CORE_TENSION}}
+        </div>
+
+        <h3 class="sub-heading">综合判断</h3>
+        <p>
+          {{OVERALL_JUDGMENT}}
+        </p>
+
+        <h3 class="sub-heading">数据缺口</h3>
+        <p>
+          {{DATA_GAPS}}
+        </p>
+      </section>
+
+<!-- {{BLOCK: section-results-investigative}} 结束 -->
