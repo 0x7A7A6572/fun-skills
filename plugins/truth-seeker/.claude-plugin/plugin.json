@@ -1,8 +1,8 @@
 {
   "name": "truth-seeker",
-  "displayName": "寻真",
-  "description": "网络事实核查——验证用户输入内容是否属实，分析原理与底层逻辑，输出可信度报告",
-  "version": "1.0.0",
+  "displayName": "truth-seeker",
+  "description": "事实/观点核查——验证用户输入内容是否属实，分析原理与底层逻辑，输出可信度报告",
+  "version": "1.0.1",
   "author": {
     "name": "0x7A7A6572"
   },
