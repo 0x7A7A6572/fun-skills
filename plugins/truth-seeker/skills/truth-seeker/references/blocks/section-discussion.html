@@ -1,0 +1,37 @@
+<!-- {{BLOCK: section-discussion}}
+     讨论/底层逻辑区块：包含引导段落 + 编号逻辑列表 + 能力光谱图。
+     变量：
+       {{DISCUSSION_INTRO}}     — lead-paragraph 内容
+       {{LOGIC_ITEMS}}          — 逻辑列表项，每项格式:
+                                  <li><div><strong>标题 — </strong>内容</div></li>
+       {{SPECTRUM_SEGMENTS}}    — 光谱段，每段格式:
+                                  <div class="spectrum-seg"><span class="spectrum-seg-label">标签</span><span class="spectrum-seg-desc">描述</span></div>
+       {{SPECTRUM_CAPTION}}     — 光谱图标题
+       {{DISCUSSION_CLOSING}}   — 结尾段落（可选）
+-->
+
+      <section class="content-section" id="logic">
+        <h2 class="section-heading">Discussion · 底层逻辑</h2>
+        <p class="lead-paragraph">
+          {{DISCUSSION_INTRO}}
+        </p>
+
+        <ol class="logic-list">
+          {{LOGIC_ITEMS}}
+        </ol>
+
+        {{DISCUSSION_CLOSING}}
+      </section>
+
+<!-- {{BLOCK: section-discussion}} 结束 -->
+
+<!-- 能力光谱图（如需使用，放在 discussion 的某个 <li> 内部）：
+  <div class="spectrum-figure">
+    <div class="spectrum-bar">
+      {{SPECTRUM_SEGMENTS}}
+    </div>
+    <div class="spectrum-figcaption">
+      {{SPECTRUM_CAPTION}}
+    </div>
+  </div>
+-->

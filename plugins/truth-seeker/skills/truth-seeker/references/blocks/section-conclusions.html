@@ -1,0 +1,26 @@
+<!-- {{BLOCK: section-conclusions}}
+     结论区块：包含首字下沉引导段 + 正文 + callout + 结尾。
+     变量：
+       {{CONCLUSION_LEAD}}      — 首段（带 drop-cap 类，首字自动下沉）
+       {{CONCLUSION_BODY}}      — 正文段落（可多个 <p>）
+       {{CALLOUT_CONTENT}}      — callout-box 内容（支持HTML）
+       {{CONCLUSION_ENDING}}    — 结尾段落（可多个 <p>）
+-->
+
+      <section class="content-section" id="conclusion">
+        <h2 class="section-heading">Conclusions</h2>
+
+        <p class="drop-cap">
+          {{CONCLUSION_LEAD}}
+        </p>
+
+        {{CONCLUSION_BODY}}
+
+        <div class="callout-box">
+          {{CALLOUT_CONTENT}}
+        </div>
+
+        {{CONCLUSION_ENDING}}
+      </section>
+
+<!-- {{BLOCK: section-conclusions}} 结束 -->

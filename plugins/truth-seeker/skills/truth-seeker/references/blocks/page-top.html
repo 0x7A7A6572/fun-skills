@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — 寻真报告</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+
+{{STYLES}}
+</head>
+<body>
+
+<!-- Nature 品牌顶栏 -->
+<div class="nature-bar">
+  <span class="nature-bar-brand">寻真<span>Truth-Seeker · Analysis</span></span>
+  <span>Open Access</span>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- 面包屑 -->
+  <div class="breadcrumb">Analysis &nbsp;|&nbsp; Open access &nbsp;|&nbsp; Published: {{PUBLISH_DATE}}</div>
+
+  <!-- ============================================================
+       {{BLOCK: article-header}}
+       文章头部 — 读取 article-header.html 了解结构后填充
+       ============================================================ -->
+
+  <!-- ============================================================
+       双栏布局：主内容 + 右侧导航
+       ============================================================ -->
+  <div class="content-layout">
+
+    <!-- 左侧：主内容 -->
+    <main class="main-content">
+
+<!-- {{BLOCK: page-top}} 结束标记 -->

@@ -1,0 +1,46 @@
+<!-- {{BLOCK: about-article}}
+     报告元信息区块：核查日期、报告编号、DOI、生成引擎 + 引用 + 权利声明。
+     变量：
+       {{ABOUT_DATE}}       — 核查日期（如"2026年7月12日"）
+       {{ABOUT_REPORT_ID}}  — 报告编号（如"TS-2026-0712-FE"）
+       {{ABOUT_DOI}}        — DOI 标识
+       {{ABOUT_ENGINE}}     — 生成引擎名称
+       {{CITE_TEXT}}        — 引用文本（纯文本或含HTML，如含 <em>）
+       {{RIGHTS_TEXT}}      — 权利声明文本
+-->
+
+  <section class="about-article" id="about">
+    <h2 class="about-article-heading">About this article</h2>
+
+    <div class="about-meta-grid">
+      <div class="about-meta-item">
+        <span class="about-meta-label">核查日期</span>
+        <span class="about-meta-value">{{ABOUT_DATE}}</span>
+      </div>
+      <div class="about-meta-item">
+        <span class="about-meta-label">报告编号</span>
+        <span class="about-meta-value">{{ABOUT_REPORT_ID}}</span>
+      </div>
+      <div class="about-meta-item">
+        <span class="about-meta-label">DOI</span>
+        <span class="about-meta-value">{{ABOUT_DOI}}</span>
+      </div>
+      <div class="about-meta-item">
+        <span class="about-meta-label">生成引擎</span>
+        <span class="about-meta-value">{{ABOUT_ENGINE}}</span>
+      </div>
+    </div>
+
+    <div class="cite-section">
+      <h3 class="cite-heading">Cite this article</h3>
+      <div class="cite-text">
+        {{CITE_TEXT}}
+      </div>
+    </div>
+
+    <div class="rights-text">
+      {{RIGHTS_TEXT}}
+    </div>
+  </section>
+
+<!-- {{BLOCK: about-article}} 结束 -->

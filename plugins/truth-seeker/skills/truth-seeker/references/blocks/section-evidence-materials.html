@@ -1,0 +1,46 @@
+<!-- {{BLOCK: section-evidence-materials}}
+     证据材料区块：展示搜索到的图片、图表、文档、数据集等媒体证据。
+     放在 verification 之后、references 之前。如果本次核查没有多媒体证据，可跳过。
+     包含两种展示模式：
+       1. 混合画廊（Figure + File Card 混排）
+       2. 独立 Figure（大图独占）
+
+     画廊模式变量（多项混排）：
+       {{GALLERY_ITEMS}} — 画廊项目，每项可以是 figure-box 或 file-card
+         · Figure 格式:
+           <figure class="figure-box">
+             <img src="图片URL" alt="描述">
+             <figcaption><strong>图 N.</strong> 标题。
+               <a class="figure-source-link" href="来源URL">图片源链接</a>
+             </figcaption>
+           </figure>
+         · File Card 格式:
+           <a class="file-card" href="文件URL" target="_blank" rel="noopener">
+             <span class="file-card-icon">📄</span>
+             <div class="file-card-body">
+               <div class="file-card-name">文件名称</div>
+               <div class="file-card-meta">
+                 <span>来源名称</span>
+                 <span class="file-card-type">PDF</span>
+               </div>
+             </div>
+             <span class="file-card-arrow">→</span>
+           </a>
+         · file-card-icon 参考: 📄=PDF, 📊=数据/表格, 🎬=视频, 📷=截图, 📁=数据集
+
+     独立 Figure 模式（仅一张大图/图表）：
+       {{STANDALONE_FIGURE}} — 直接放一个 figure-box
+-->
+
+      <section class="content-section" id="materials">
+        <h2 class="section-heading">Evidence Materials · 证据材料</h2>
+
+        <div class="evidence-gallery">
+          {{GALLERY_ITEMS}}
+        </div>
+
+        <!-- 如只需单张大图，替换上面的 gallery 为独立 figure -->
+        {{STANDALONE_FIGURE}}
+      </section>
+
+<!-- {{BLOCK: section-evidence-materials}} 结束 -->

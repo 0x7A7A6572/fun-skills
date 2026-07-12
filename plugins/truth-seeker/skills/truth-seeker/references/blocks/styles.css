@@ -1,0 +1,1392 @@
+/* ============================================================
+   NATURE-STYLE REPORT · 设计令牌
+   此文件由 report-template.html 拆分而来，纯静态样式。
+   AI 生成报告时无需读取此文件，直接引用即可。
+   ============================================================ */
+
+/* ============================================================
+   设计令牌
+   ============================================================ */
+:root {
+  /* 表面 */
+  --bg:            #ffffff;
+  --about-bg:      #f7f7f7;
+  --about-border:  #e0e0e0;
+
+  /* 文字 */
+  --text:          #1a1a1a;
+  --text-secondary:#333333;
+  --text-muted:    #555555;
+  --text-faint:    #767676;
+
+  /* 链接 / Nature 蓝 */
+  --link:          #27698f;
+  --link-hover:    #1a4f6a;
+  --link-visited:  #5b2d8e;
+
+  /* 边框 */
+  --rule:          #d5d5d5;
+  --rule-light:    #e9e9e9;
+  --rule-emphasis: #888888;
+
+  /* 可信度 (Nature 风格的柔和科学配色) */
+  --verdict-true:    #2d6a4f;
+  --verdict-mostly:  #52796f;
+  --verdict-partial: #b8860b;
+  --verdict-unknown: #888;
+  --verdict-false:   #b22222;
+
+  /* 字号阶梯 */
+  --text-2xs:   11px;
+  --text-xs:    12px;
+  --text-sm:    13px;
+  --text-base:  16px;   /* Nature 正文 */
+  --text-lg:    18px;
+  --text-xl:    22px;
+  --text-2xl:   28px;
+  --text-3xl:   34px;
+
+  /* 间距 */
+  --space-2xs:  4px;
+  --space-xs:   8px;
+  --space-sm:   12px;
+  --space-md:   20px;
+  --space-lg:   28px;
+  --space-xl:   36px;
+  --space-2xl:  48px;
+
+  /* 几何 */
+  --content-width: 720px;
+  --sidebar-width: 240px;
+  --gap:           48px;
+  --total-width:   calc(var(--content-width) + var(--gap) + var(--sidebar-width));
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  font-family: "Source Serif 4", "Noto Serif SC", "SimSun", "STSong", Georgia, "Times New Roman", serif;
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ============================================================
+   NATURE 品牌顶栏
+   ============================================================ */
+.nature-bar {
+  border-bottom: 1px solid #000;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: var(--text-xs);
+  letter-spacing: .02em;
+}
+.nature-bar-brand {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: #000;
+  letter-spacing: .04em;
+}
+.nature-bar-brand span {
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+/* ============================================================
+   主布局 · 双栏
+   ============================================================ */
+.page-wrapper {
+  max-width: var(--total-width);
+  margin: 0 auto;
+  padding: var(--space-lg) 20px;
+}
+
+/* 面包屑 */
+.breadcrumb {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  margin-bottom: var(--space-md);
+  letter-spacing: .02em;
+}
+
+/* ============================================================
+   文章头部
+   ============================================================ */
+.article-header {
+  margin-bottom: var(--space-xl);
+}
+
+/* 文章类型标签 */
+.article-type {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--link);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: var(--space-xs);
+}
+
+/* 标题 */
+.article-title {
+  font-family: "Crimson Pro", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #000;
+  margin-bottom: var(--space-sm);
+  letter-spacing: -.01em;
+}
+.article-subtitle {
+  font-family: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+  font-size: var(--text-lg);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+}
+
+/* 作者行 */
+.article-authors {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-sm);
+  color: var(--text);
+  margin-bottom: var(--space-xs);
+  line-height: 1.6;
+}
+.affiliation-sup {
+  font-size: .7em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--link);
+}
+
+/* 隶属机构 */
+.article-affiliations {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+.article-affiliations .aff-num {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 2px;
+  vertical-align: super;
+  font-size: .75em;
+}
+
+/* 日期元信息 */
+.article-meta {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-xs);
+}
+.article-meta strong {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* DOI 行 */
+.article-doi {
+  font-family: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+  font-size: var(--text-xs);
+  color: var(--link);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+  word-break: break-all;
+}
+.article-doi:hover {
+  text-decoration: underline;
+}
+
+/* 水平分隔线 */
+.header-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: var(--space-lg) 0;
+}
+
+/* ============================================================
+   双栏布局
+   ============================================================ */
+.content-layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--content-width)) var(--sidebar-width);
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* ============================================================
+   主内容区
+   ============================================================ */
+.main-content {
+  min-width: 0;
+}
+
+/* --- 各个区块的锚点目标 --- */
+.content-section {
+  scroll-margin-top: 24px;
+  margin-bottom: var(--space-xl);
+}
+
+/* --- 章节标题 --- */
+.section-heading {
+  font-family: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: #000;
+  line-height: 1.35;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* 二级子标题 */
+.sub-heading {
+  font-family: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+/* --- 正文段落 --- */
+.content-section p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
+}
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* 首段强调 */
+.lead-paragraph {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+/* --- 陈述框（Nature 风格的摘要引用）--- */
+.statement-box {
+  border-left: 3px solid var(--text);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+  background: #fafafa;
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+.statement-box .statement-attribution {
+  display: block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-style: normal;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+  font-weight: 500;
+}
+
+/* --- 综合评级 --- */
+.verdict-card {
+  border: 1px solid var(--rule);
+  padding: var(--space-lg);
+  margin: var(--space-md) 0;
+  background: var(--rule)/* #fdfdfd */;
+}
+
+.verdict-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.verdict-score-group {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.verdict-score {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+}
+
+.verdict-unit {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.verdict-label {
+  display: inline-block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+}
+.verdict-label--true    { color: var(--verdict-true);    border-color: var(--verdict-true);    }
+.verdict-label--mostly  { color: var(--verdict-mostly);  border-color: var(--verdict-mostly);  }
+.verdict-label--partial { color: var(--verdict-partial); border-color: var(--verdict-partial); }
+.verdict-label--unknown { color: var(--verdict-unknown); border-color: var(--verdict-unknown); }
+.verdict-label--false   { color: var(--verdict-false);   border-color: var(--verdict-false);   }
+
+.verdict-description {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* 评级尺度条 */
+.scale-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: var(--space-xs);
+  background: var(--rule-light);
+}
+.scale-bar-fill {
+  background: var(--text-muted);
+  border-radius: 3px;
+  transition: width .6s ease;
+}
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.scale-labels span.is-active {
+  font-weight: 700;
+  color: var(--text-secondary);
+  position: relative;
+}
+.scale-labels span.is-active::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 4px;
+  background: var(--text-muted);
+  margin: 0 auto 2px;
+}
+
+/* --- 逐条验证 · 主张项 --- */
+.claim-block {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--rule-light);
+}
+.claim-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.claim-block-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.claim-num {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 20px;
+}
+
+.claim-title {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: #000;
+  flex: 1;
+  min-width: 200px;
+}
+
+.claim-tag {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 2px 8px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.claim-tag--true    { color: var(--verdict-true);    border-color: var(--verdict-true);    }
+.claim-tag--mostly  { color: var(--verdict-mostly);  border-color: var(--verdict-mostly);  }
+.claim-tag--partial { color: var(--verdict-partial); border-color: var(--verdict-partial); }
+.claim-tag--unknown { color: var(--verdict-unknown); border-color: var(--verdict-unknown); }
+.claim-tag--false   { color: var(--verdict-false);   border-color: var(--verdict-false);   }
+
+/* 证据表格 */
+.evidence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.evidence-col-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+  padding-bottom: var(--space-2xs);
+  border-bottom: 1px solid var(--rule);
+}
+
+.evidence-list {
+  list-style: none;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.evidence-list li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: var(--space-2xs);
+}
+.evidence-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--text-faint);
+}
+.evidence-source {
+  display: block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  margin-top: 1px;
+}
+.evidence-stars {
+  color: var(--verdict-partial);
+  margin-left: 2px;
+}
+
+/* 分析段 */
+.claim-analysis {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding: var(--space-sm) var(--space-md);
+  background: #fafbfc;
+  border-left: 2px solid var(--rule);
+}
+.claim-analysis strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* --- 表格 --- */
+.table-wrapper {
+  overflow-x: auto;
+  margin: var(--space-md) 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", "JetBrains Mono", system-ui, monospace;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.data-table thead {
+  border-top: 2px solid var(--text);
+  border-bottom: 1px solid var(--text);
+}
+.data-table thead th {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-align: left;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--text);
+}
+.data-table tbody td {
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--rule-light);
+  color: var(--text-secondary);
+}
+.data-table tbody tr:last-child td {
+  border-bottom: 2px solid var(--text);
+}
+
+.table-caption {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-2xs);
+  font-style: italic;
+}
+
+/* --- 逻辑列表 --- */
+.logic-list {
+  list-style: none;
+  counter-reset: logic;
+}
+.logic-list li {
+  counter-increment: logic;
+  padding: var(--space-md) 0 var(--space-md) 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+.logic-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.logic-list li::before {
+  content: counter(logic);
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-faint);
+  flex-shrink: 0;
+  width: 28px;
+  text-align: left;
+  line-height: 1.3;
+}
+.logic-list li strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* --- 能力光谱 --- */
+.spectrum-figure {
+  margin: var(--space-md) 0;
+}
+
+.spectrum-bar {
+  display: flex;
+  border: 1px solid var(--rule);
+}
+.spectrum-seg {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  padding: var(--space-sm) var(--space-xs);
+  border-right: 1px solid var(--rule-light);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+.spectrum-seg:last-child { border-right: none; }
+.spectrum-seg:nth-child(odd) { background: #fafafa; }
+
+.spectrum-seg-label {
+  display: block;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.spectrum-seg-desc {
+  display: block;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.spectrum-figcaption {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  margin-top: var(--space-2xs);
+  font-style: italic;
+}
+
+/* --- 参考资料 --- */
+.ref-list {
+  list-style: none;
+  counter-reset: ref;
+}
+.ref-list li {
+  counter-increment: ref;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+.ref-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+.ref-list li::before {
+  content: counter(ref) ".";
+  font-weight: 700;
+  color: var(--text);
+  margin-right: var(--space-xs);
+}
+
+.ref-authors {
+  font-weight: 600;
+  color: var(--text);
+}
+.ref-title {
+  font-style: italic;
+}
+.ref-source {
+  color: var(--text-muted);
+}
+.ref-link {
+  display: block;
+  font-family: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+  font-size: var(--text-2xs);
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+  margin-top: 2px;
+}
+.ref-link:hover { text-decoration: underline; }
+
+/* --- 小结 callout --- */
+.callout-box {
+  border: 1px solid var(--rule);
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  background: #fafbfc;
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+.callout-box strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* --- 首字下沉 --- */
+.drop-cap::first-letter {
+  float: left;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 4em;
+  font-weight: 600;
+  line-height: .7;
+  padding-right: 8px;
+  padding-top: 4px;
+  color: #000;
+}
+
+/* ============================================================
+   右侧导航栏 · Article Navigation
+   ============================================================ */
+.article-nav {
+  position: sticky;
+  top: 24px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.article-nav-title {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: #000;
+  letter-spacing: .02em;
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--text);
+  text-transform: uppercase;
+}
+
+.article-nav-list {
+  list-style: none;
+}
+
+.article-nav-list li {
+  margin-bottom: 0;
+}
+
+.article-nav-list a {
+  display: block;
+  padding: 5px 0 5px 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+  font-size: var(--text-xs);
+  letter-spacing: .01em;
+}
+
+.article-nav-list a:hover {
+  color: var(--text);
+  border-left-color: var(--rule);
+}
+
+.article-nav-list a.nav-active {
+  color: #000;
+  font-weight: 600;
+  border-left-color: #000;
+}
+
+/* 导航附属操作 */
+.article-nav-actions {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--rule-light);
+}
+
+.nav-action-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--link);
+  text-decoration: none;
+  padding: 4px 0;
+}
+.nav-action-link:hover {
+  text-decoration: underline;
+}
+.nav-action-icon {
+  font-size: var(--text-sm);
+}
+
+/* ============================================================
+   ABOUT THIS ARTICLE · 底部信息区
+   ============================================================ */
+.about-article {
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--about-bg);
+  border: 1px solid var(--about-border);
+}
+
+.about-article-heading {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--rule);
+}
+
+.about-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.about-meta-item {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+.about-meta-label {
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+.about-meta-value {
+  color: var(--text);
+}
+
+/* Cite this article */
+.cite-section {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--rule);
+}
+
+.cite-heading {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: var(--space-sm);
+}
+
+.cite-text {
+  font-family: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: var(--space-sm) var(--space-md);
+  background: #fff;
+  border: 1px solid var(--rule);
+  word-break: break-all;
+}
+
+/* 权利声明 */
+.rights-text {
+  margin-top: var(--space-md);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  line-height: 1.6;
+}
+.rights-text a {
+  color: var(--link);
+  text-decoration: none;
+}
+.rights-text a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   页脚
+   ============================================================ */
+.report-footer {
+  margin-top: var(--space-xl);
+  text-align: center;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  letter-spacing: .02em;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   键盘焦点
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 1100px) {
+  :root {
+    --content-width: 100%;
+    --sidebar-width: 0px;
+    --gap: 0px;
+    --total-width: 100%;
+  }
+
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .article-nav {
+    display: none;
+  }
+
+  .about-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --text-3xl: 26px;
+    --text-2xl: 22px;
+    --text-xl: 18px;
+    --text-lg: 16px;
+  }
+
+  .page-wrapper {
+    padding: var(--space-md) 16px;
+  }
+
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-article {
+    padding: var(--space-md);
+  }
+
+  .about-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .claim-block-head {
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .spectrum-bar {
+    flex-wrap: wrap;
+  }
+  .spectrum-seg {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  .logic-list li {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+@media (max-width: 400px) {
+  .spectrum-bar {
+    flex-direction: column;
+  }
+  .spectrum-seg {
+    border-right: none;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .spectrum-seg:last-child { border-bottom: none; }
+}
+
+/* ============================================================
+   打印
+   ============================================================ */
+@media print {
+  :root {
+    --bg: #fff;
+    --about-bg: #fafafa;
+    --text: #000;
+    --text-secondary: #333;
+    --text-muted: #555;
+    --text-faint: #777;
+    --link: #27698f;
+    --rule: #ccc;
+    --rule-light: #eee;
+  }
+
+  body {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .nature-bar { border-bottom: 1px solid #000; }
+  .article-nav { display: none; }
+  .page-wrapper { max-width: 100%; padding: 0; }
+  .content-layout { grid-template-columns: 1fr; }
+
+  .about-article,
+  .claim-block,
+  .verdict-card,
+  .callout-box {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scale-bar-fill { transition: none; }
+  .article-nav-list a { transition: none; }
+  .effect-fill { transition: none; }
+}
+
+/* ============================================================
+   假设检验框
+   ============================================================ */
+.hypothesis-box {
+  border: 1px solid var(--rule);
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  background: #fdfdfd;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+.hypothesis-box h4 {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: var(--space-sm);
+}
+.hypothesis-row {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+.hypothesis-item {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--space-sm);
+  border: 1px solid var(--rule-light);
+  background: #fff;
+}
+.hypothesis-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2xs);
+}
+.hypothesis-label.h0 { color: var(--verdict-false); }
+.hypothesis-label.h1 { color: var(--verdict-true); }
+.hypothesis-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.hypothesis-standard {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--rule-light);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.hypothesis-standard strong {
+  color: var(--text);
+}
+
+/* ============================================================
+   效应量显示
+   ============================================================ */
+.effect-size-bar {
+  margin: var(--space-md) 0;
+}
+.effect-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xs);
+}
+.effect-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 80px;
+  text-align: right;
+}
+.effect-track {
+  flex: 1;
+  height: 8px;
+  background: var(--rule-light);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.effect-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .8s ease;
+}
+.effect-fill--small  { background: var(--verdict-partial); }
+.effect-fill--medium { background: var(--verdict-mostly); }
+.effect-fill--large  { background: var(--verdict-true); }
+.effect-fill--neg    { background: var(--verdict-false); }
+.effect-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--text-xs);
+  color: var(--text);
+  min-width: 52px;
+  font-weight: 600;
+}
+.effect-caption {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  font-style: italic;
+  margin-top: var(--space-2xs);
+}
+
+/* ============================================================
+   置信区间
+   ============================================================ */
+.ci-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--text-sm);
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--rule);
+  background: #fafafa;
+}
+.ci-range {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+.ci-label {
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   方法论审计标记
+   ============================================================ */
+.audit-strip {
+  display: flex;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
+  flex-wrap: wrap;
+}
+.audit-badge {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.audit-badge--high   { border-color: var(--verdict-true);    color: var(--verdict-true);    }
+.audit-badge--medium { border-color: var(--verdict-partial); color: var(--verdict-partial); }
+.audit-badge--low    { border-color: var(--verdict-false);   color: var(--verdict-false);   }
+.audit-badge--na     { border-color: var(--rule-emphasis);   color: var(--text-faint);      }
+
+/* ============================================================
+   竞争假设
+   ============================================================ */
+.competing-hypotheses {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  border: 1px solid var(--rule-light);
+  background: #fafbfc;
+}
+.competing-hypotheses h4 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+.alt-hypothesis {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+.alt-hypothesis:last-child { border-bottom: none; padding-bottom: 0; }
+.alt-h-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: var(--text-faint);
+  white-space: nowrap;
+  min-width: 56px;
+  text-align: right;
+}
+.alt-h-plausibility {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  margin-left: auto;
+  padding-left: var(--space-sm);
+  white-space: nowrap;
+}
+.alt-h-plausibility--likely   { color: var(--verdict-true);    }
+.alt-h-plausibility--possible { color: var(--verdict-partial); }
+.alt-h-plausibility--unlikely { color: var(--verdict-false);   }
+
+/* ============================================================
+   媒体证据 · Figure（图片/图表）
+   ============================================================ */
+.figure-box {
+  margin: var(--space-md) 0;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.figure-box img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fafafa;
+}
+.figure-box figcaption {
+  padding: var(--space-sm) var(--space-md);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.6;
+  border-top: 1px solid var(--rule-light);
+}
+.figure-box figcaption strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.figure-source-link {
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--text-2xs);
+  color: var(--link);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: var(--space-2xs);
+  word-break: break-all;
+}
+.figure-source-link:hover { text-decoration: underline; }
+
+/* ============================================================
+   文件下载卡片
+   ============================================================ */
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background .15s;
+}
+.file-card:hover {
+  background: #f8f8f8;
+}
+.file-card-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+.file-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.file-card-name {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+.file-card-meta {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+.file-card-type {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 2px 6px;
+  border: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.file-card-arrow {
+  color: var(--text-faint);
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   证据画廊
+   ============================================================ */
+.evidence-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+.evidence-gallery .figure-box,
+.evidence-gallery .file-card {
+  margin: 0;
+}
+.evidence-gallery-heading {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 720px) {
+  .evidence-gallery {
+    grid-template-columns: 1fr;
+  }
+  .hypothesis-row {
+    flex-direction: column;
+  }
+  .audit-strip {
+    gap: var(--space-2xs);
+  }
+  .effect-label {
+    min-width: 60px;
+    font-size: var(--text-2xs);
+  }
+}
+
+@media print {
+  .figure-box,
+  .file-card,
+  .evidence-gallery {
+    break-inside: avoid;
+  }
+}

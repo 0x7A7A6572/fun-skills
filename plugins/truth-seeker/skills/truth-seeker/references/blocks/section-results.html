@@ -1,0 +1,72 @@
+<!-- {{BLOCK: section-results}}
+     综合可信度评级区块：分数、评级标签、描述、尺度条、效应量、置信区间。
+     变量：
+       {{VERDICT_SCORE}}       — 可信度百分比数字（不含%），如 55
+       {{VERDICT_LABEL}}       — 评级中文，如"部分真实"
+       {{VERDICT_LABEL_CLASS}} — CSS类名后缀，可选: true | mostly | partial | unknown | false
+       {{VERDICT_SCALE_PCT}}   — 尺度条宽度百分比，如 "55%"
+
+       {{VERDICT_DESCRIPTION}} — 评级详细说明（支持HTML，可包含<strong>和<br>）
+       {{VERDICT_SUMMARY}}     — 评级总结段落（贝叶斯推理过程简述）
+
+       {{EFFECT_SIZE_LABEL}}   — 效应量标签，如 "小" / "中等" / "大"
+       {{EFFECT_SIZE_PCT}}     — 效应量条宽度，如 "35%"
+       {{EFFECT_SIZE_CLASS}}   — CSS类后缀: small | medium | large | neg
+       {{EFFECT_SIZE_DESC}}    — 效应量描述，如 "初级前端降薪 10–20%，资深岗位薪资稳定"
+
+       {{CI_RANGE}} — 置信区间范围，如 "40%–70%"
+       {{CI_LEVEL}} — 置信水平，如 "95%"
+
+     注意 scale-labels 中 is-active 需按实际评级放在对应 <span> 上（0=虚假, 1=无法判断, 2=部分真实, 3=基本真实, 4=真实）。
+-->
+
+      <section class="content-section" id="results">
+        <h2 class="section-heading">Results · 综合可信度评级</h2>
+
+        <div class="verdict-card">
+          <div class="verdict-card-header">
+            <div class="verdict-score-group">
+              <span class="verdict-score">{{VERDICT_SCORE}}%</span>
+              <span class="verdict-unit">可信度</span>
+              <span class="ci-display">
+                <span class="ci-label">{{CI_LEVEL}} CI</span>
+                <span class="ci-range">{{CI_RANGE}}</span>
+              </span>
+            </div>
+            <span class="verdict-label verdict-label--{{VERDICT_LABEL_CLASS}}">{{VERDICT_LABEL}}</span>
+          </div>
+
+          <div class="verdict-description">
+            {{VERDICT_DESCRIPTION}}
+          </div>
+
+          <div class="scale-bar">
+            <div class="scale-bar-fill" style="width: {{VERDICT_SCALE_PCT}};"></div>
+          </div>
+          <div class="scale-labels">
+            <span>虚假</span>
+            <span>无法判断</span>
+            <span class="is-active">{{VERDICT_LABEL}}</span>
+            <span>基本真实</span>
+            <span>真实</span>
+          </div>
+        </div>
+
+        <h3 class="sub-heading">效应量评估</h3>
+        <div class="effect-size-bar">
+          <div class="effect-row">
+            <span class="effect-label">效应量</span>
+            <div class="effect-track">
+              <div class="effect-fill effect-fill--{{EFFECT_SIZE_CLASS}}" style="width: {{EFFECT_SIZE_PCT}};"></div>
+            </div>
+            <span class="effect-value">{{EFFECT_SIZE_LABEL}}</span>
+          </div>
+          <div class="effect-caption">{{EFFECT_SIZE_DESC}}</div>
+        </div>
+
+        <p>
+          {{VERDICT_SUMMARY}}
+        </p>
+      </section>
+
+<!-- {{BLOCK: section-results}} 结束 -->

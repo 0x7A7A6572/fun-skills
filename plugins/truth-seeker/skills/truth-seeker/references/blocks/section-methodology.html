@@ -1,0 +1,35 @@
+<!-- {{BLOCK: section-methodology}}
+     验证方法论说明块：介绍本次核查采用的五层验证框架。
+     这是一个"元信息"块——不是核查结论本身，而是说明"我们是怎么核查的"。
+     放在 results 之后、verification 之前。
+
+     变量：
+       {{FALSIFIABILITY}}       — 可证伪性判断结论（一段话）
+       {{METHODOLOGY_SUMMARY}}  — 所用方法论总结（一段话，描述本次核查的具体方法）
+       {{AUDIT_STRIP}}          — 方法论审计标记条（audit-badge 列表），示例如下:
+         <span class="audit-badge audit-badge--high">方法论质量: 高</span>
+         <span class="audit-badge audit-badge--medium">时效性: 中等</span>
+         <span class="audit-badge audit-badge--high">来源独立性: 高</span>
+         <span class="audit-badge audit-badge--low">利益冲突: 待确认</span>
+         每个 badge 可选: audit-badge--high | medium | low | na
+
+     可选的 hypothesis-box（如果陈述适合假设检验）：
+       {{HYPOTHESIS_BOX}} — 完整的 hypothesis-box HTML，不含则删除整块
+-->
+
+      <section class="content-section" id="methodology">
+        <h2 class="section-heading">Methodology · 验证方法</h2>
+
+        <h3 class="sub-heading">可证伪性检查</h3>
+        <p>{{FALSIFIABILITY}}</p>
+
+        {{HYPOTHESIS_BOX}}
+
+        <h3 class="sub-heading">来源方法论审计</h3>
+        <div class="audit-strip">
+          {{AUDIT_STRIP}}
+        </div>
+        <p>{{METHODOLOGY_SUMMARY}}</p>
+      </section>
+
+<!-- {{BLOCK: section-methodology}} 结束 -->

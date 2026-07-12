@@ -1,0 +1,30 @@
+<!-- {{BLOCK: article-header}} 开始标记
+     文章头部块：包含文章类型标签、标题、副标题、作者、日期元信息。
+     变量：{{ARTICLE_TYPE}} {{TITLE}} {{SUBTITLE}} {{AUTHORS}} {{AFFILIATION}}
+           {{VERIFY_DATE}} {{DOI}}
+     所有字段均可按实际情况替换，不需要的字段（如副标题）可留空或删除整行。
+-->
+
+  <header class="article-header">
+    <div class="article-type">{{ARTICLE_TYPE}}</div>
+    <h1 class="article-title">{{TITLE}}</h1>
+    <div class="article-subtitle">{{SUBTITLE}}</div>
+
+    <div class="article-authors">
+      {{AUTHORS}}<span class="affiliation-sup">1</span>
+    </div>
+
+    <div class="article-affiliations">
+      <span class="aff-num">1</span> {{AFFILIATION}}
+    </div>
+
+    <div class="article-meta">
+      <strong>核查日期</strong> {{VERIFY_DATE}} ·
+      <strong>DOI</strong>
+      <a class="article-doi" href="#">{{DOI}}</a>
+    </div>
+  </header>
+
+  <hr class="header-rule">
+
+<!-- {{BLOCK: article-header}} 结束标记 -->

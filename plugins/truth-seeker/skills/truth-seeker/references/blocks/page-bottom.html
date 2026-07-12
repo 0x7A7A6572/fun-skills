@@ -1,0 +1,63 @@
+<!-- {{BLOCK: page-bottom}}
+     页脚 + 滚动监听脚本 + 闭合标签。纯静态，无需读取。
+     变量：
+       {{FOOTER_TEXT}}       — 页脚文字
+-->
+
+  <!-- 页脚 -->
+  <footer class="report-footer">
+    {{FOOTER_TEXT}}
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<!-- ============================================================
+     SCROLL SPY · 导航滚动监听
+     ============================================================ -->
+<script>
+(function() {
+  const nav = document.getElementById('article-nav');
+  if (!nav) return;
+
+  const navLinks = nav.querySelectorAll('.article-nav-list a');
+  const sections = [];
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    const target = document.getElementById(href.slice(1));
+    if (target) {
+      sections.push({ link, target });
+    }
+  });
+
+  if (sections.length === 0) return;
+
+  function onScroll() {
+    let currentId = null;
+    const viewportMiddle = window.innerHeight * 0.2;
+
+    sections.forEach(({ link, target }) => {
+      const rect = target.getBoundingClientRect();
+      if (rect.top <= viewportMiddle) {
+        currentId = link.getAttribute('href');
+      }
+    });
+
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
+      currentId = sections[sections.length - 1].link.getAttribute('href');
+    }
+
+    navLinks.forEach(link => {
+      link.classList.toggle('nav-active', link.getAttribute('href') === currentId);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
+<!-- {{BLOCK: page-bottom}} 结束 -->

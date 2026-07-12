@@ -1,0 +1,42 @@
+<!-- {{BLOCK: section-principles}}
+     原理分析区块：包含引导段 + 效率表格 + 驱动力列表。
+     变量：
+       {{PRINCIPLES_INTRO}}     — 核心机制概述（lead-paragraph）
+       {{PRINCIPLES_BODY}}      — 正文段落（可多个 <p>）
+       {{TABLE_ROWS}}           — 效率表格的 <tr> 行，每行格式: <tr><td>时代</td><td>开发方式</td><td>单人产出</td></tr>
+       {{TABLE_CAPTION}}        — 表格标题（含编号和描述）
+       {{DRIVERS}}              — 驱动力列表（HTML段落或列表，可多个 <p>）
+-->
+
+      <section class="content-section" id="principles">
+        <h2 class="section-heading">Principles · 原理分析</h2>
+
+        <p class="lead-paragraph">
+          {{PRINCIPLES_INTRO}}
+        </p>
+
+        {{PRINCIPLES_BODY}}
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>时代</th>
+                <th>开发方式</th>
+                <th>单人产出</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{TABLE_ROWS}}
+            </tbody>
+          </table>
+          <div class="table-caption">
+            {{TABLE_CAPTION}}
+          </div>
+        </div>
+
+        <h3 class="sub-heading">{{DRIVERS_HEADING}}</h3>
+        {{DRIVERS}}
+      </section>
+
+<!-- {{BLOCK: section-principles}} 结束 -->

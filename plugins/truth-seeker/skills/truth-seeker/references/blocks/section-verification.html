@@ -1,0 +1,126 @@
+<!-- {{BLOCK: section-verification}}
+     逐条验证区块：包含一个或多个 claim-block。
+     每个 claim-block 的结构：
+       <div class="claim-block">
+         <div class="claim-block-head">
+           <span class="claim-num">N</span>
+           <span class="claim-title">主张标题</span>
+           <span class="claim-tag claim-tag--CLASS">评级标签</span>
+         </div>
+
+         <!-- 方法论审计标记条 -->
+         <div class="audit-strip">
+           <span class="audit-badge audit-badge--LEVEL">方法论质量: HIGH/MEDIUM/LOW</span>
+           <span class="audit-badge audit-badge--LEVEL">时效性: HIGH/MEDIUM/LOW</span>
+           <span class="audit-badge audit-badge--LEVEL">来源独立性: HIGH/MEDIUM/LOW</span>
+           <span class="audit-badge audit-badge--LEVEL">利益冲突: 评级</span>
+         </div>
+
+         <div class="evidence-grid">...</div>
+         <div class="claim-analysis">...</div>
+
+         <!-- 竞争假设 -->
+         <div class="competing-hypotheses">
+           <h4>竞争假设 Alternative Explanations</h4>
+           <div class="alt-hypothesis">...</div>
+         </div>
+       </div>
+
+     变量：
+     {{CLAIM_N_TITLE}}       — 主张标题
+     {{CLAIM_N_TAG}}         — 评级标签文字
+     {{CLAIM_N_TAG_CLASS}}   — CSS后缀: claim-tag--true | mostly | partial | unknown | false
+     {{CLAIM_N_AUDIT}}       — 方法论审计标记条 HTML（4个 audit-badge）
+                                 badge CSS: audit-badge--high | medium | low | na
+     {{CLAIM_N_SUPPORTING}}  — 支持证据列表（多个 <li>）
+     {{CLAIM_N_CONTRARY}}    — 反方证据列表（多个 <li>）
+     {{CLAIM_N_ANALYSIS}}    — 分析文字（<strong>分析：</strong>开头）
+     {{CLAIM_N_ALT_HYPOTHESES}} — 竞争假设列表，每项格式:
+       <div class="alt-hypothesis">
+         <span class="alt-h-label">替代解释 N</span>
+         <span>解释内容</span>
+         <span class="alt-h-plausibility alt-h-plausibility--LEVEL">likely / possible / unlikely</span>
+       </div>
+       plausibility CSS: alt-h-plausibility--likely | possible | unlikely
+-->
+
+      <section class="content-section" id="verification">
+        <h2 class="section-heading">Verification · 逐条验证</h2>
+
+        <!-- 主张 1 -->
+        <div class="claim-block">
+          <div class="claim-block-head">
+            <span class="claim-num">1</span>
+            <span class="claim-title">{{CLAIM_1_TITLE}}</span>
+            <span class="claim-tag {{CLAIM_1_TAG_CLASS}}">{{CLAIM_1_TAG}}</span>
+          </div>
+
+          <div class="audit-strip">
+            {{CLAIM_1_AUDIT}}
+          </div>
+
+          <div class="evidence-grid">
+            <div>
+              <div class="evidence-col-label">支持证据 Supporting</div>
+              <ul class="evidence-list">
+                {{CLAIM_1_SUPPORTING}}
+              </ul>
+            </div>
+            <div>
+              <div class="evidence-col-label">反方证据 Contrary</div>
+              <ul class="evidence-list">
+                {{CLAIM_1_CONTRARY}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="claim-analysis">
+            {{CLAIM_1_ANALYSIS}}
+          </div>
+
+          <div class="competing-hypotheses">
+            <h4>竞争假设 Alternative Explanations</h4>
+            {{CLAIM_1_ALT_HYPOTHESES}}
+          </div>
+        </div>
+
+        <!-- 主张 2 -->
+        <div class="claim-block">
+          <div class="claim-block-head">
+            <span class="claim-num">2</span>
+            <span class="claim-title">{{CLAIM_2_TITLE}}</span>
+            <span class="claim-tag {{CLAIM_2_TAG_CLASS}}">{{CLAIM_2_TAG}}</span>
+          </div>
+
+          <div class="audit-strip">
+            {{CLAIM_2_AUDIT}}
+          </div>
+
+          <div class="evidence-grid">
+            <div>
+              <div class="evidence-col-label">支持证据 Supporting</div>
+              <ul class="evidence-list">
+                {{CLAIM_2_SUPPORTING}}
+              </ul>
+            </div>
+            <div>
+              <div class="evidence-col-label">反方证据 Contrary</div>
+              <ul class="evidence-list">
+                {{CLAIM_2_CONTRARY}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="claim-analysis">
+            {{CLAIM_2_ANALYSIS}}
+          </div>
+
+          <div class="competing-hypotheses">
+            <h4>竞争假设 Alternative Explanations</h4>
+            {{CLAIM_2_ALT_HYPOTHESES}}
+          </div>
+        </div>
+
+      </section>
+
+<!-- {{BLOCK: section-verification}} 结束 -->

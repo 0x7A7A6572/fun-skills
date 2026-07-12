@@ -1,0 +1,32 @@
+<!-- {{BLOCK: sidebar-nav}}
+     固定右侧导航栏：关闭 <main>，插入侧边栏，关闭 content-layout。
+     无需读取 — 纯静态结构。
+     变量：{{NAV_ITEMS}} — 导航链接列表，每项格式:
+       <li><a href="#ID">显示名称</a></li>
+     常见 ID: #abstract #results #methodology #verification #materials #principles #logic #references #conclusion #about
+     AI 可根据实际包含的 section 动态生成导航项。
+-->
+
+    </main>
+
+    <!-- 右侧：Article Navigation -->
+    <aside class="article-nav" id="article-nav">
+      <div class="article-nav-title">Article Navigation</div>
+      <ul class="article-nav-list">
+        {{NAV_ITEMS}}
+        <li><a href="#about">About this article</a></li>
+      </ul>
+
+      <div class="article-nav-actions">
+        <a href="#" class="nav-action-link">
+          <span class="nav-action-icon">↓</span> Download PDF
+        </a>
+        <a href="#" class="nav-action-link">
+          <span class="nav-action-icon">↗</span> Share
+        </a>
+      </div>
+    </aside>
+
+  </div><!-- /content-layout -->
+
+<!-- {{BLOCK: sidebar-nav}} 结束 -->
