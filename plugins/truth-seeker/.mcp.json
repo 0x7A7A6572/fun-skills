@@ -1,0 +1,9 @@
+  {
+    "mcpServers": {
+      "parallel-search": {
+        "type": "sse",
+        "url": "https://search.parallel.ai/mcp",
+        "description": "免费网页搜索和内容抓取服务，作为 WebSearch/WebFetch 的备用通道"
+      }
+    }
+  }
