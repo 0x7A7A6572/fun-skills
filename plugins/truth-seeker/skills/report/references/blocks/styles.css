@@ -280,6 +280,7 @@ body {
   margin-bottom: var(--space-md);
   line-height: 1.7;
   text-align: justify;
+  -webkit-hyphens: auto;
   hyphens: auto;
 }
 .content-section p:last-child {
